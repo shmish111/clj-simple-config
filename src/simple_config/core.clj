@@ -5,11 +5,13 @@
 (defn read-config
   "read config from the edn file in the location of system property `config-path` or from the resource config.edn"
   []
-  (with-open [rdr (-> (or (System/getProperty "config-path")
-                          (io/resource "config.edn"))
-                      io/reader
-                      java.io.PushbackReader.)]
-    (edn/read rdr)))
+  (if-let [path (or (System/getProperty "config-path")
+                    (io/resource "config.edn"))]
+    (with-open [rdr (-> path
+                        io/reader
+                        java.io.PushbackReader.)]
+      (edn/read rdr))
+    (throw (Exception. "No path set in system property 'config-path' and no config.edn file could be found in resources"))))
 
 (defn get!
   "throws an exception if returned value is nil"
