@@ -1,6 +1,6 @@
-# simple-config
+# clj-simple-config
 
-[![Build Status](https://travis-ci.org/shmish111/simple-config.png)](https://travis-ci.org/shmish111/simple-config)
+[![Build Status](https://travis-ci.org/shmish111/clj-simple-config.png)](https://travis-ci.org/shmish111/clj-simple-config)
 
 Tired of writing the same simple config namespace?  Simple config is designed to do the basics:
 
@@ -9,10 +9,10 @@ Tired of writing the same simple config namespace?  Simple config is designed to
 
 ## Usage
 
-In [Leiningen](http://github.com/technomancy/leiningen/) add the dependency [![Clojars Project](http://clojars.org/simple-config/latest-version.svg)](http://clojars.org/simple-config)
+In [Leiningen](http://github.com/technomancy/leiningen/) add the dependency [![Clojars Project](http://clojars.org/clj-simple-config/latest-version.svg)](http://clojars.org/clj-simple-config)
 
 ```clojure
-(require '[simple-config.core :refer [read-config]])
+(require '[clj-simple-config.core :refer [read-config]])
 
 (System/setProperty "config-path" "my/config/file.edn")
 

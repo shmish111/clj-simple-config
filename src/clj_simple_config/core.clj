@@ -1,4 +1,4 @@
-(ns simple-config.core
+(ns clj-simple-config.core
   (:require [clojure.java.io :as io]
             [clojure.edn :as edn]))
 

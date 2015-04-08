@@ -1,6 +1,6 @@
-(ns simple-config.core-test
+(ns clj-simple-config.core-test
   (:require [midje.sweet :refer :all]
-            [simple-config.core :refer :all]))
+            [clj-simple-config.core :refer :all]))
 
 (fact "should throw exception if no config path found"
       (read-config) => (throws Exception "No path set in system property 'config-path' and no config.edn file could be found in resources"))
