@@ -1,6 +1,6 @@
 # simple-config
 
-[![Build Status](https://travis-ci.org/shmish111/clj-cron-parse.png)](https://travis-ci.org/shmish111/clj-cron-parse)
+[![Build Status](https://travis-ci.org/shmish111/simple-config.png)](https://travis-ci.org/shmish111/simple-config)
 
 Tired of writing the same simple config namespace?  Simple config is designed to do the basics:
 
@@ -9,7 +9,7 @@ Tired of writing the same simple config namespace?  Simple config is designed to
 
 ## Usage
 
-In [Leiningen](http://github.com/technomancy/leiningen/) add the dependency [![Clojars Project](http://clojars.org/clj-cron-parse/latest-version.svg)](http://clojars.org/clj-cron-parse)
+In [Leiningen](http://github.com/technomancy/leiningen/) add the dependency [![Clojars Project](http://clojars.org/simple-config/latest-version.svg)](http://clojars.org/simple-config)
 
 ```clojure
 (require '[simple-config.core :refer [read-config]])
