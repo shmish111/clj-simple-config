@@ -23,6 +23,6 @@ In [Leiningen](http://github.com/technomancy/leiningen/) add the dependency [![C
 
 ## License
 
-Copyright © 2015 David Smith
+Copyright © 2015 David Smith.
 
 Distributed under the MIT License.
