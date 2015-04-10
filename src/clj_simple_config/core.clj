@@ -1,6 +1,7 @@
 (ns clj-simple-config.core
   (:require [clojure.java.io :as io]
-            [clojure.edn :as edn]))
+            [clojure.edn :as edn]
+            [clojure.string :as s]))
 
 (defn read-config
   "read config from the edn file in the location of system property `config-path` or from the resource config.edn"
@@ -12,8 +13,12 @@
                         java.io.PushbackReader.)]
       (merge (edn/read rdr) (->> (System/getProperties)
                                  (filter (fn [[k v]] (.startsWith k "conf.")))
-                                 (map #(.substring % 5))
-                                 keyword)))
+                                 (map (fn [[k v]] [(.substring k 5) v]))
+                                 (map (fn [[k v]]
+                                        (let [path (->> (s/split k #"\.")
+                                                        (map keyword))]
+                                          (assoc-in {} path v))))
+                                 (apply merge))))
     (throw (Exception. "No path set in system property 'config-path' and no config.edn file could be found in resources"))))
 
 (defn get!
