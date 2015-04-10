@@ -5,6 +5,7 @@
 Tired of writing the same simple config namespace?  Simple config is designed to do the basics:
 
 * Read a clojure edn file from `config-path` System property or load `config.edn` from classpath resources
+* Merge command line arguments starting `conf.` into config map
 * Provide functions `get!` and `get-in!` that throw exceptions if value in map is nil
 
 ## Usage
@@ -16,9 +17,12 @@ In [Leiningen](http://github.com/technomancy/leiningen/) add the dependency [![C
 
 (System/setProperty "config-path" "my/config/file.edn")
 
+(System/setProperty "conf.myproperty" "myval")
+
 (def conf (read-config))
 
 (:my-property conf)
+(:other-property conf)
 ```
 
 ## License

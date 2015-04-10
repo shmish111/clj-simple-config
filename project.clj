@@ -1,4 +1,4 @@
-(defproject simple-config "0.1.0-SNAPSHOT"
+(defproject clj-simple-config "0.1.1"
   :description "Tired of writing the same simple config namespace?  Simple config is designed to do the basics"
   :url "https://github.com/shmish111/clj-simple-config"
   :license {:name "MIT public License"

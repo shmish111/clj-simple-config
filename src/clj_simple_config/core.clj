@@ -10,7 +10,10 @@
     (with-open [rdr (-> path
                         io/reader
                         java.io.PushbackReader.)]
-      (edn/read rdr))
+      (merge (edn/read rdr) (->> (System/getProperties)
+                                 (filter (fn [[k v]] (.startsWith k "conf.")))
+                                 (map #(.substring % 5))
+                                 keyword)))
     (throw (Exception. "No path set in system property 'config-path' and no config.edn file could be found in resources"))))
 
 (defn get!
