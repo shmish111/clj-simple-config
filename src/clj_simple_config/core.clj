@@ -13,10 +13,10 @@
   "slightly inaccurate name, tries to parse the string into a number or boolean"
   [v]
   (or
-    (parse-number v)
-    (cond (= "true" v) true
-          (= "false" v) false
-          :else v)))
+   (parse-number v)
+   (cond (= "true" v) true
+         (= "false" v) false
+         :else v)))
 
 (defn read-config
   "read config from the edn file in the location of system property `config-path` or from the resource config.edn
