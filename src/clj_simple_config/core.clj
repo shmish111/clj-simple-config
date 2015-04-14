@@ -18,6 +18,14 @@
          (= "false" v) false
          :else v)))
 
+(defn- deep-merge
+  [& ms]
+  (letfn [(merge-fn [v1 v2]
+            (if (and (map? v1) (map? v2))
+              (deep-merge v1 v2)
+              v2))]
+    (apply merge-with merge-fn ms)))
+
 (defn read-config
   "read config from the edn file in the location of system property `config-path` or from the resource config.edn
   Will merge in System properties starting with `conf.`
@@ -29,14 +37,15 @@
     (with-open [rdr (-> path
                         io/reader
                         java.io.PushbackReader.)]
-      (merge (edn/read rdr) (->> (System/getProperties)
-                                 (filter (fn [[k v]] (.startsWith k "conf.")))
-                                 (map (fn [[k v]] [(.substring k 5) v]))
-                                 (map (fn [[k v]]
-                                        (let [path (->> (s/split k #"\.")
-                                                        (map keyword))]
-                                          (assoc-in {} path (string->primitive v)))))
-                                 (apply merge))))
+      (deep-merge (edn/read rdr) (->> (System/getProperties)
+                                      (filter (fn [[k v]] (.startsWith k "conf.")))
+                                      (map (fn [[k v]] [(.substring k 5) v]))
+                                      (map (fn [[k v]]
+                                             (let [path (->> (s/split k #"\.")
+                                                             (map keyword))]
+                                               (assoc-in {} path (string->primitive v)))))
+                                      ((fn [x] (prn x) x))
+                                      (apply deep-merge))))
     (throw (Exception. "No path set in system property 'config-path' and no config.edn file could be found in resources"))))
 
 (defn get!
